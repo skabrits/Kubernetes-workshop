@@ -139,14 +139,14 @@ metadata:
   name: nginx-secret-mounted
 spec:
   imagePullSecrets:
-    - my-registry: my-registry-secret
+    - name: my-registry-secret
   containers:
     - name: nginx
       image: nginx
       env:
         - name: SECRET_KEY
           valueFrom:
-            secretMapKeyRef:
+            secretKeyRef:
               name: key-var
               key: key_val
       volumeMounts:
@@ -155,8 +155,8 @@ spec:
         readOnly: true
   volumes:
     - name: secret-volume
-      secretName:
-        name: my-secret-html-file
+      secret:
+        secretName: my-secret-html-file
         optional: true
 ```
 
@@ -278,6 +278,11 @@ spec:
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
+        env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
   volumeClaimTemplates:
   - metadata:
       name: www

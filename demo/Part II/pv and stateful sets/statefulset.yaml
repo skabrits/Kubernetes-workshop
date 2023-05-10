@@ -40,10 +40,10 @@ spec:
         - name: www
           mountPath: /usr/share/nginx/html
         env:
-          - name: MY_POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
   volumeClaimTemplates:
   - metadata:
       name: www
