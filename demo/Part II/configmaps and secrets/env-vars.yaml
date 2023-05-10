@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-vars
+  namespace: hello
+data:
+  LOG_LEVEL: debug
+  LOG_PATH: /var/log/log_file
