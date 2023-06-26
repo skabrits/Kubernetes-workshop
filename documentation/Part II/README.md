@@ -388,4 +388,11 @@ kubectl exec -it -n my-app nginx -- bash
 
 # check twice to see if communication across nodes has no obstacles
 
+# to edit resource manifest on-the-go use kubectl edit command:
+kubectl edit deploy -n my-app nginx-deploy
+kubectl edit svc -n my-app nginx-svc
+kubectl edit ing -n my-app nginx-ing
+
+# after changing configmap or secret don't forget to restart deployment
+kubectl rollout restart deploy -n my-app nginx-deploy
 ```
